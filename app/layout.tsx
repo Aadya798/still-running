@@ -74,7 +74,7 @@ export default function RootLayout({
             </div>
           </div>
           <div className="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 text-sm text-center text-slate-500">
-            © {new Date().getFullYear()} Still Running. Built for runners.
+            © 2026 Still Running. Built for runners.
           </div>
         </footer>
       </body>
