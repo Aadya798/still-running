@@ -1,194 +1,146 @@
 "use client"
 import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Activity, Brain, Users, ArrowRight, Zap, HeartPulse } from "lucide-react"
-import { motion } from "framer-motion"
+import Image from 'next/image'
+import { ArrowRight, ChevronRight, Activity, Zap } from 'lucide-react'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 overflow-hidden">
+    <main className="min-h-screen bg-[#050505] text-white selection:bg-white selection:text-black font-sans overflow-x-hidden">
       
-      {/* HERO SECTION */}
-      <section className="relative w-full h-[90vh] flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 p-6 overflow-hidden">
+      {/* 1. MINIMALIST NAVBAR */}
+      <nav className="absolute top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center">
+        <div className="text-2xl font-black italic tracking-tighter">
+          STILL <span className="text-gray-500">RUNNING.</span>
+        </div>
         
-        {/* Animated Background Shapes (Simulating motion) */}
-        <motion.div 
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-          animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <div className="hidden md:flex gap-10 text-xs font-bold tracking-widest text-gray-400">
+          <Link href="/dashboard" className="hover:text-white transition-colors">DASHBOARD</Link>
+          <Link href="/run-clubs" className="hover:text-white transition-colors">RUN CLUBS</Link>
+          <Link href="/about" className="hover:text-white transition-colors">PHILOSOPHY</Link>
+        </div>
 
-        <div className="relative z-10 max-w-4xl text-center space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold tracking-wide uppercase">
-              Run + Mental Health
-            </span>
-          </motion.div>
+        <Link href="/log" className="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-gray-200 transition-all hover:scale-105">
+          JOIN CLUB
+        </Link>
+      </nav>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-extrabold tracking-tighter text-slate-900"
-          >
-            Still <span className="text-blue-600">Running.</span>
-          </motion.h1>
+      {/* 2. HERO SECTION */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        
+        {/* Motion Blur Background */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/hero-bg.jpg" 
+            alt="Night running motion" 
+            fill 
+            className="object-cover opacity-60 scale-105"
+            priority
+          />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-[#050505]/80" />
+        </div>
+
+        {/* Hero Text */}
+        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto mt-16">
+          <h1 className="text-[15vw] md:text-[10rem] font-black tracking-tighter leading-[0.8] mb-6 uppercase">
+            Run <br/> Together.
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 font-medium max-w-lg mx-auto mb-10 tracking-wide">
+            Where your physical miles meet your mental peace. Join the most vibrant running community.
+          </p>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-3xl text-slate-600 max-w-2xl mx-auto font-light leading-relaxed"
-          >
-            Where your physical miles meet your mental peace. Track, log, and discover your true potential.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-6"
-          >
-            <Link href="/dashboard">
-              <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-lg px-8 py-7 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
-                Enter Dashboard <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/dashboard" className="w-full sm:w-auto bg-white text-black px-10 py-5 rounded-full font-black tracking-wide hover:scale-105 transition-transform text-sm">
+              ENTER DASHBOARD
             </Link>
-            <Link href="/log">
-              <Button variant="outline" className="w-full sm:w-auto text-lg px-8 py-7 rounded-full border-slate-300 bg-white/50 backdrop-blur hover:bg-slate-100 transition-all">
-                Log Today
-              </Button>
+            <Link href="/log" className="w-full sm:w-auto px-10 py-5 rounded-full font-black tracking-wide border border-white/20 hover:bg-white/10 transition-colors flex items-center justify-center text-sm backdrop-blur-sm">
+              LOG A RUN <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
-      <section className="py-24 px-6 max-w-6xl mx-auto space-y-16">
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center space-y-4"
-        >
-          <h2 className="text-4xl font-bold text-slate-900">Everything you need to thrive.</h2>
-          <p className="text-lg text-slate-500">We combine running analytics with mental health tracking.</p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ y: -10 }}
-          >
-            <Card className="h-full border-none shadow-lg bg-white overflow-hidden relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <div className="bg-blue-100 p-3 rounded-xl"><Activity className="text-blue-600 w-6 h-6" /></div>
-                <CardTitle className="text-2xl">Track Runs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 text-lg leading-relaxed">Log your distance, pace, and route. See how your physical efforts translate to mental clarity.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            whileHover={{ y: -10 }}
-          >
-            <Card className="h-full border-none shadow-lg bg-white overflow-hidden relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-green-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <div className="bg-green-100 p-3 rounded-xl"><Brain className="text-green-600 w-6 h-6" /></div>
-                <CardTitle className="text-2xl">Mental Health</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 text-lg leading-relaxed">Daily mood tracking and journaling. Discover the hidden patterns between miles and happiness.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ y: -10 }}
-          >
-            <Card className="h-full border-none shadow-lg bg-white overflow-hidden relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <div className="bg-purple-100 p-3 rounded-xl"><Users className="text-purple-600 w-6 h-6" /></div>
-                <CardTitle className="text-2xl">Run Clubs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 text-lg leading-relaxed">Find local communities. Running with others turns a solitary grind into a shared journey.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
+      {/* 3. BRAND TICKER */}
+      <div className="border-y border-white/10 py-8 bg-[#050505] relative z-20">
+        <p className="text-center text-[10px] tracking-[0.2em] text-gray-500 mb-8 uppercase font-bold">Powered By The Best</p>
+        <div className="flex justify-center gap-12 md:gap-24 opacity-40 grayscale mix-blend-screen">
+          <span className="text-3xl font-black italic tracking-tighter">STRAVA</span>
+          <span className="text-3xl font-black italic tracking-tighter">NIKE</span>
+          <span className="text-3xl font-black italic tracking-tighter">GARMIN</span>
+          <span className="text-3xl font-black italic tracking-tighter">WHOOP</span>
         </div>
-      </section>
+      </div>
 
-      {/* STATS / BANNER SECTION */}
-      <section className="py-24 bg-slate-900 text-white">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">The science is simple. <br/><span className="text-blue-400">Movement changes mood.</span></h2>
-            <p className="text-slate-400 text-lg leading-relaxed">We built Still Running to prove it to you. Visualize your progress and let the data motivate you.</p>
+      {/* 4. SPLIT SECTION */}
+      <section className="bg-[#050505] py-32 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <div className="space-y-10 order-2 lg:order-1">
+            <div>
+              <h2 className="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase flex items-center gap-4 mb-6">
+                <span className="w-8 h-[1px] bg-white"></span> Who We Are
+              </h2>
+              <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
+                A COMMUNITY<br/>DRIVEN<br/>PLATFORM.
+              </h3>
+            </div>
             
-            <div className="flex gap-8 pt-4">
-              <div>
-                <div className="text-4xl font-extrabold text-white">80%</div>
-                <div className="text-sm text-slate-400 mt-1">Report better mood after running</div>
-              </div>
-              <div>
-                <div className="text-4xl font-extrabold text-white">5km</div>
-                <div className="text-sm text-slate-400 mt-1">Average distance to mental clarity</div>
-              </div>
+            <p className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-md font-light">
+              We track your pace, distance, and mental health—turning your raw effort into clean, motivating visuals you'll actually want to look at.
+            </p>
+            
+            <div className="space-y-5 pt-4">
+               <div className="flex items-center gap-4 text-sm font-semibold tracking-wide text-gray-300">
+                 <Activity className="w-5 h-5 text-white" /> Zone insights & mood trends
+               </div>
+               <div className="flex items-center gap-4 text-sm font-semibold tracking-wide text-gray-300">
+                 <Zap className="w-5 h-5 text-white" /> Coach-ready graphs
+               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-2xl"
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <HeartPulse className="w-8 h-8 text-red-500" />
-              <h3 className="text-2xl font-bold text-white">Live Mood Tracking</h3>
+            <div className="pt-6">
+              <Link href="/about" className="inline-flex items-center gap-2 text-white font-bold tracking-widest text-sm border-b border-white pb-2 hover:text-gray-400 hover:border-gray-400 transition-colors">
+                READ OUR PHILOSOPHY <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
-            <div className="space-y-4">
-              <div className="h-4 bg-slate-700 rounded-full overflow-hidden"><div className="h-full bg-green-500 w-4/5"></div></div>
-              <div className="h-4 bg-slate-700 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-3/5"></div></div>
-              <div className="h-4 bg-slate-700 rounded-full overflow-hidden"><div className="h-full bg-purple-500 w-4/5"></div></div>
-            </div>
-            <p className="text-slate-400 mt-6 text-sm">Visualize your mental state alongside your physical effort instantly.</p>
-          </motion.div>
+          </div>
+
+          {/* Track Blur Image */}
+          <div className="relative h-[600px] lg:h-[800px] w-full order-1 lg:order-2">
+             <Image 
+               src="/track-blur.jpg" 
+               alt="Track blur" 
+               fill 
+               className="object-cover opacity-90"
+             />
+             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-50" />
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. FULL WIDTH IMAGE BANNER */}
+      <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/sunset-run.jpg" 
+            alt="Sunset running" 
+            fill 
+            className="object-cover opacity-50"
+          />
+          <div className="absolute inset-0 bg-[#050505]/60" />
+        </div>
+        
+        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-tight">
+            YOU ARE NOT <br/> RUNNING ALONE.
+          </h2>
+          <p className="text-gray-300 text-lg mb-10">
+            Track your miles. Log your mood. Find your tribe.
+          </p>
+          <Link href="/log" className="bg-white text-black px-10 py-5 rounded-full font-black tracking-wide hover:scale-105 transition-transform text-sm inline-block">
+            START TRACKING
+          </Link>
         </div>
       </section>
 
