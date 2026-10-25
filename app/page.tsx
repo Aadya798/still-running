@@ -1,6 +1,5 @@
 "use client"
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, ChevronRight, Activity, Zap } from 'lucide-react'
 
 export default function Home() {
@@ -27,17 +26,15 @@ export default function Home() {
       {/* 2. HERO SECTION */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         
-        {/* Motion Blur Background */}
+        {/* Motion Blur Background (Using standard img tag for reliability) */}
         <div className="absolute inset-0 z-0">
-          <Image 
+          <img 
             src="/hero-bg.jpg" 
             alt="Night running motion" 
-            fill 
-            className="object-cover opacity-60 scale-105"
-            priority
+            className="absolute inset-0 w-full h-full object-cover opacity-80 scale-105"
           />
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-[#050505]/80" />
+          {/* Dark gradient overlay (lighter so image shows) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
         </div>
 
         {/* Hero Text */}
@@ -105,13 +102,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Track Blur Image */}
-          <div className="relative h-[600px] lg:h-[800px] w-full order-1 lg:order-2">
-             <Image 
+          {/* Track Blur Image (Using standard img tag) */}
+          <div className="relative h-[600px] lg:h-[800px] w-full order-1 lg:order-2 overflow-hidden rounded-2xl">
+             <img 
                src="/track-blur.jpg" 
                alt="Track blur" 
-               fill 
-               className="object-cover opacity-90"
+               className="absolute inset-0 w-full h-full object-cover opacity-90"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-50" />
           </div>
@@ -122,11 +118,10 @@ export default function Home() {
       {/* 5. FULL WIDTH IMAGE BANNER */}
       <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image 
+          <img 
             src="/sunset-run.jpg" 
             alt="Sunset running" 
-            fill 
-            className="object-cover opacity-50"
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-[#050505]/60" />
         </div>
